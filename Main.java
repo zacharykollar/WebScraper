@@ -5,7 +5,7 @@ import org.jsoup.nodes.Document;
 public class Main {
     public static void main (String[] args){
         final String url ="https://en.wikipedia.org/wiki/Guinea_pig";
-        final String targetUrl ="https://en.wikipedia.org/wiki/Cladogram#Measuring_homoplasy";
+        final String targetUrl ="https://en.wikipedia.org/wiki/Jaw";
         try {
             writeToFile(String.valueOf(findDepth(Jsoup.connect(url).get(), targetUrl, url, 0, 300)));
         } catch (IOException e) {
@@ -31,10 +31,10 @@ public class Main {
     }
     public static int findDepth(Document doc, String target, String url, int deep, int smallest){
         System.out.println(deep + " : " + url + " : " + smallest);
-        if (deep > 5 || deep >= smallest)
-            return 200;
         if (url.equals(target))
             return deep;
+        if (deep >= 5 || deep >= smallest)
+            return 200;
         for (org.jsoup.nodes.Element link : doc.select("[href]")){
             int d = findDepth(doc, target, link.attr("abs:href"), deep + 1, smallest);
             if (smallest > d)
