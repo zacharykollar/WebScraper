@@ -7,8 +7,8 @@ import java.util.HashSet;
 
 public class Main {
     public static void main(String[] args) {
-        final String url = "https://jsoup.org/cookbook/introduction/";
-        final String target = "https://jsoup.org/apidocs/?org/jsoup/nodes/package-tree.html";
+        final String url = "https://en.wikipedia.org/wiki/Guinea_pig";
+        final String target = "https://en.wikipedia.org/wiki/Jaw";
         writeToFile(String.valueOf(findDepthBreadth(target, url, 2)));
     }
 
@@ -70,15 +70,14 @@ public class Main {
     public static int findDepthBreadth(String target, String url, int maxDepth) {
         HashSet<String> first = new HashSet<>();
         HashSet<String> second = new HashSet<>();
-        System.out.println(getLinksHash(url));
         int deep = 0;
         if (url.equals(target))
             return deep;
         second.addAll(getLinksHash(url));
-        System.out.println("init " + first + " : " + second);
         while (deep < maxDepth) {
-            System.out.println(deep + " : " + first + " : " + second);
-            if (deep % 2 == 0) {
+            deep++;
+            System.out.println(deep + " : " + first.size() + " : " + second.size());
+            if (deep % 2 == 1) {
                 first.clear();
                 for (String s : second) {
                     if (s.equals(target)) {
@@ -95,7 +94,6 @@ public class Main {
                     second.addAll(getLinksHash(s));
                 }
             }
-            deep++;
         }
         return -1;
     }
