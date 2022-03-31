@@ -8,7 +8,7 @@ import java.util.HashSet;
 public class Main {
     public static void main(String[] args) {
         final String url = "https://en.wikipedia.org/wiki/Guinea_pig";
-        final String target = "https://en.wikipedia.org/wiki/Jaw";
+        final String target = "https://en.wikipedia.org/wiki/Capybara";
         writeToFile(String.valueOf(findDepthBreadth(target, url, 2)));
     }
 
@@ -74,7 +74,7 @@ public class Main {
         if (url.equals(target))
             return deep;
         second.addAll(getLinksHash(url));
-        while (deep < maxDepth) {
+        while (deep < maxDepth - 1) {
             deep++;
             System.out.println(deep + " : " + first.size() + " : " + second.size());
             if (deep % 2 == 1) {
