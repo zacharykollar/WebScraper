@@ -4,12 +4,27 @@ import java.io.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import java.util.HashSet;
+import javax.swing.*;
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+        final JFrame f = new JFrame();
         final String url = "https://jsoup.org/cookbook/introduction/";
         final String target = "https://www.wikipedia.org";
+        //popUp(f);
         writeToFile(String.valueOf(findDepthBreadth(target, url, 2)));
+    }
+
+    public static void popUp(JFrame f) {
+        f = new JFrame("Input");
+        JTextField text = new JTextField();
+        JButton submit = new JButton();
+        f.add(text);
+        f.add(submit);
+        f.setSize(400, 400);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
     }
 
     public static void getData(String url) {
