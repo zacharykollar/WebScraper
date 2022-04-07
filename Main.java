@@ -30,7 +30,7 @@ public class Main {
         });
         breadth.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                writeToFile(String.valueOf(findDepth(end.getText(), start.getText(), (Integer) maxDeep.getValue())));
+                writeToFile(String.valueOf(findDepthBreadth(end.getText(), start.getText(), (Integer) maxDeep.getValue())));
             }
         });
         panel.add(maxDeep);
