@@ -1,28 +1,52 @@
 
+import java.awt.Dimension;
 import java.io.*;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import java.util.HashSet;
 import javax.swing.*;
-import java.awt.*;
+import java.awt.event.*;
 
 public class Main {
     public static void main(String[] args) {
         final JFrame f = new JFrame();
         final String url = "https://jsoup.org/cookbook/introduction/";
         final String target = "https://www.wikipedia.org";
-        //popUp(f);
+        popUp(f);
         writeToFile(String.valueOf(findDepthBreadth(target, url, 2)));
     }
 
     public static void popUp(JFrame f) {
         f = new JFrame("Input");
-        JTextField text = new JTextField();
-        JButton submit = new JButton();
-        f.add(text);
-        f.add(submit);
-        f.setSize(400, 400);
+        JPanel panel = new JPanel();
+        JTextField start = new JTextField("input start url", 100);
+        JButton depth = new JButton("Depth First!");
+        JTextField end = new JTextField("input target url", 100);
+        JButton breadth = new JButton("Breadth First!");
+        JSpinner maxDeep = new JSpinner();
+        maxDeep.setValue(3);
+        maxDeep.setToolTipText("Maximum Depth to Traverse");
+        depth.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                writeToFile(String.valueOf(findDepth(end.getText(), start.getText(), (Integer) maxDeep.getValue())));
+            }
+        });
+        breadth.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                writeToFile(String.valueOf(findDepth(end.getText(), start.getText(), (Integer) maxDeep.getValue())));
+            }
+        });
+        panel.add(maxDeep);
+        depth.setSize(50, 15);
+        panel.add(start);
+        panel.add(depth);
+        breadth.setSize(50, 15);
+        panel.add(end);
+        panel.add(breadth);
+        f.add(panel);
+        f.pack();
+        f.setMinimumSize(new Dimension(1000, 100));
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
     }
