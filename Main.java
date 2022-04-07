@@ -10,15 +10,11 @@ import java.awt.event.*;
 
 public class Main {
     public static void main(String[] args) {
-        final JFrame f = new JFrame();
-        final String url = "https://jsoup.org/cookbook/introduction/";
-        final String target = "https://www.wikipedia.org";
-        popUp(f);
-        writeToFile(String.valueOf(findDepthBreadth(target, url, 2)));
+        popUp();
     }
 
-    public static void popUp(JFrame f) {
-        f = new JFrame("Input");
+    public static void popUp() {
+        JFrame f = new JFrame("Input");
         JPanel panel = new JPanel();
         JTextField start = new JTextField("input start url", 100);
         JButton depth = new JButton("Depth First!");
