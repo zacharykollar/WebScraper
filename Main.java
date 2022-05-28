@@ -1,12 +1,21 @@
 
 import java.awt.Dimension;
-import java.io.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashSet;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import java.util.HashSet;
-import javax.swing.*;
-import java.awt.event.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,12 +34,14 @@ public class Main {
         maxDeep.setToolTipText("Maximum Depth to Traverse");
         depth.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                writeToFile(String.valueOf(findDepth(end.getText(), start.getText(), (Integer) maxDeep.getValue())));
+                int x = findDepth(end.getText(), start.getText(), (Integer) maxDeep.getValue());
+                JOptionPane.showMessageDialog(null, "Found at depth: "  + x);
             }
         });
         breadth.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                writeToFile(String.valueOf(findDepthBreadth(end.getText(), start.getText(), (Integer) maxDeep.getValue())));
+                int x = findDepthBreadth(end.getText(), start.getText(), (Integer) maxDeep.getValue());
+                JOptionPane.showMessageDialog(null, "Found at depth: " + x);
             }
         });
         panel.add(maxDeep);
